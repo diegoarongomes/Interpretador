@@ -10,14 +10,16 @@ class Interpretador{
 		)
 		for (i=0;i<linhas.length;i++){
 			if (linhas[i].contains("var")){
-				v[p]=new Variaveis();
-				v[p].cria.Variavel(linhas[i];
+				v[p].cria.Variavel(v,p,linhas[i];
 			}
+			
+			else if (linhas[i].contains("+")||linhas[i].contais("-")||linhas[i].contais("/")||linhas[i].contais("*")){
+				
+			}
+			
 			else if (linhas[i].contains("=")){
 			
 			}
-			else if (linhas[i].contains("+")||linhas[i].contais("-")){
-			
 		
 		}
 		
