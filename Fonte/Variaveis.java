@@ -20,15 +20,6 @@ class Variaveis{
 	public double getValor(){
 		return this.valor;
 	}
-	public int valorPesquisa(Variaveis v[],int p,double x){
-		int i;
-		for(i=0;i<p;i++){
-			if (v[i].valor = x){
-				return i;
-			}
-		}
-		return -1;
-	}
 	public int nomePesquisa(Variaveis v[],int p, String n){
 		int i;
 		for (i=0;i<p;i++){
@@ -38,4 +29,12 @@ class Variaveis{
 		}
 		return -1;
 	}
+	public void criaVariavel(String l){
+		int i,j,k;
+		i=lastIndexOF(";");
+		for (j=i;j!null;j--){
+			k=j;
+		}
+		this.nome = l.substring(k,i-1);
+ 	}
 }
