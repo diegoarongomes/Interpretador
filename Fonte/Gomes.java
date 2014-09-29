@@ -26,7 +26,7 @@ class Gomes {
             
             // Inicializamos o interpretador com o vetor de linhas. A partir
             // desse ponto, o objeto "b" irá interpretar o código lido do arquivo.
-            b.interpreta(linhas);
+            b.interpretaCod(linhas);
             
         } catch (IOException e) {
             System.out.println("Nao consegui ler o arquivo: " + (args.length > 0 ? args[0] : "(desconhecido)"));

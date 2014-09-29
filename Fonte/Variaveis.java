@@ -4,8 +4,8 @@ class Variaveis{
 	private double valor;
 	
 	public Variaveis(){
-		nome = "0";
-		valor = 0;
+		this.nome = "0";
+		this.valor = 0;
 	}
 	
 	public void setNome(String a){
@@ -31,8 +31,8 @@ class Variaveis{
 	}
 	public void criaVariavel(String l){
 		int i,j,k;
-		i=lastIndexOF(";");
-		for (j=i;j!null;j--){
+		i=l.lastIndexOf(";");
+		for (j=i;(l.charAt(j)) != null ;j--){
 			k=j;
 		}
 		this.nome = l.substring(k,i-1);
