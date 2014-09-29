@@ -28,6 +28,7 @@ class Variaveis{
 		int i = this.nomePesquisa(v,p,nome);
 		k = Double.parseDouble(s.substring(j+1,s.indexOf(";")));
 		v[i].valor = k;
+		System.out.println("Nome:"+v[i].nome+" Valor:" +v[i].valor);
 	}
 
 	public double getValor(){
