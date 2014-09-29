@@ -19,15 +19,15 @@ class Variaveis{
 	}
 	//Método para inserir valores em uma variável. O método chama o método nomePesquisa para encontrar o indice da variável no vetor,
 	//encontra o numero na string, transforma em double, e coloca na variável valor do objeto v[i]
-	public void setValor(String s,Variaveis vet[],int p){
+	public void setValor(String s,Variaveis v[],int p){
 		int j;
 		double k;
 		String nome = new String();
 		j = s.indexOf("=");		
 		nome = s.substring(0,j);		
-		int i = this.nomePesquisa(vet,p,nome);
+		int i = this.nomePesquisa(v,p,nome);
 		k = Double.parseDouble(s.substring(j+1,s.indexOf(";")));
-		this[i].valor = k;
+		v[i].valor = k;
 	}
 
 	public double getValor(){
@@ -50,6 +50,6 @@ class Variaveis{
 		int i,j,k;
 		i=l.lastIndexOf(";");
 		k=l.lastIndexOf(":");
-		this.nome = l.substring(k+1,i);		
+		v[pos].nome = l.substring(k+1,i);		
  	}
 }

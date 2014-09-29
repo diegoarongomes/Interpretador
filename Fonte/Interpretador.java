@@ -2,12 +2,17 @@
 //Esta classe recebe o vetor de strings da Main, e faz a decodificação linha por linha, em busca dos comandos a serem realizados. Ao encontrar algum comando válido
 //chama a classe Variáveis, que trata as informações.
 class Interpretador{
-	private String arquivo[];
-	private Variaveis v[];
+	private String arquivo[] = new String[2000];
+	private Variaveis v[] = new Variaveis[20];
+	private Variaveis x;
 	
 	//Incialização do objeto
 	public Interpretador(){
-		this.v = new Variaveis[20];
+		int i;
+		x = new Variaveis();
+		for (i=0;i<20;i++){
+			v[i]=new Variaveis();
+		}
 	}
 	
 	//Método que faz a leitura linha por linha.
@@ -20,12 +25,12 @@ class Interpretador{
 			//Dentro do laço, selecionamos uma linha por vez para interpretar, em busca de Totens que auxiliem nos processos..
 			//1° SE. Caso a inha contenha a palavra Var, entende-se como criação de variável do tipo Var:a;
 			if (arquivo[i].contains("Var")){
-				v.criaVariavel(arquivo[i],v[],pos);
+				x.criaVariavel(arquivo[i],v,pos);
 				pos++;
 			}
 			//2° SE. Caso a linha possua atribuição de valor do tipo a=2;
 			else if (arquivo[i].contains("=")){
-				v.setValor(arquivo[i],v[],pos);
+				x.setValor(arquivo[i],v,pos);
 			}		
 		}
 		
