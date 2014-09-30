@@ -8,11 +8,7 @@ class Interpretador{
 	
 	//Incialização do objeto
 	public Interpretador(){
-		int i;
 		x = new Variaveis();
-		for (i=0;i<20;i++){
-			v[i]=new Variaveis();
-		}
 	}
 	
 	//Método que faz a leitura linha por linha.
@@ -32,15 +28,7 @@ class Interpretador{
 			else if (arquivo[i].contains("=")){
 				x.setValor(arquivo[i],v,pos);
 			}		
-		}
-		
-		
-		
-		
-		
-		
-		
-		
+		}	
 		
 	}
 	
