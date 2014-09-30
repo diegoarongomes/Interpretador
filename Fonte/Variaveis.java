@@ -9,38 +9,47 @@ class Variaveis{
 		this.nome = "0";
 		this.valor = 0.0;
 	}
+	
+	public String getNome(){
+		return this.nome;
+	}
+	
+	//Método de criação de nova variável. 
+	public void criaVariavel(String l){
+		int i,j,k;
+		i=l.lastIndexOf(";");
+		k=l.lastIndexOf(":");
+		this.nome = l.substring(k+1,i);
+		System.out.println("Nome:"+this.nome+" Valor:" +this.valor);		
+ 	}
+	
 	//Método para inserir valores em uma variável. O método chama o método nomePesquisa para encontrar o indice da variável no vetor,
 	//encontra o numero na string, transforma em double, e coloca na variável valor do objeto v[i]
-	public void setValor(String s,Variaveis v[],int p){
+	public void setValor(String s){
 		int j;
 		double k;
-		String nome = new String();
-		j = s.indexOf("=");		
-		nome = s.substring(0,j);		
-		int i = Variaveis.nomePesquisa(v,p,nome);
+		j = s.indexOf("=");			
 		k = Double.parseDouble(s.substring(j+1,s.indexOf(";")));
-		v[i].valor = k;
-		System.out.println("Nome:"+v[i].nome+" Valor:" +v[i].valor);
+		this.valor = k;
+		System.out.println("Nome:"+this.nome+" Valor:" +this.valor);
 	}
 	
 	//Método de pesquisa, recebe um vetor de variáveis, um int com o tamanho do vetor, 
 	//e uma string a ser procurada. Retorna o indice do vetor em que esta a variável
 	//ou -1 caso não encontre a string no vetor.
-	public static int nomePesquisa(Variaveis v[],int p, String s){
-		int i;
+	public static int nomePesquisa(String s,Variaveis v[],int p){
+		int i,j;
+		j = s.indexOf("=");		
+		String n_busca = new String();
+		n_busca = s.substring(0,j);
+		String nome;
 		for (i=0;i<p;i++){
-			if (v[i].nome.compareTo(s) == 0){
-				return i;
+			nome = v[i].getNome();
+			if (nome.compareTo(n_busca) == 0){
+				break;
 			}
 		}
-		return -1;
+		return i;
 	}
-	//Método de criação de nova variável. 
-	public void criaVariavel(String l,Variaveis v[],int pos){
-		int i,j,k;
-		i=l.lastIndexOf(";");
-		k=l.lastIndexOf(":");
-		v[pos].nome = l.substring(k+1,i);
-		System.out.println("Nome:"+v[pos].nome+" Valor:" +v[pos].valor);		
- 	}
+	
 }
