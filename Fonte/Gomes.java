@@ -32,7 +32,6 @@ class Gomes {
             System.out.println("Nao consegui ler o arquivo: " + (args.length > 0 ? args[0] : "(desconhecido)"));
             System.out.println("Uso:");
             System.out.println("    java Blah /caminho/para/arquivo.blah");
-        }
-        
+        }        
     }
 }

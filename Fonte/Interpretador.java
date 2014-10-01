@@ -13,7 +13,8 @@ class Interpretador{
 		
 		for (i=0;i<=this.arquivo.length && this.arquivo[i]!= null;i++){
 			// Dentro do laço, selecionamos uma linha por vez para interpretar, em busca de Totens que auxiliem nos processos..
-			// 1° SE. Caso a inha contenha a palavra Var, entende-se como criação de variável do tipo Var:a;
+			
+			// 1° SE. Caso a linha contenha a palavra Var, entende-se como criação de variável do tipo Var:nome;
 			if (this.arquivo[i].contains("Var")){
 				v[pos]=new Variaveis();
 				v[pos].criaVariavel(this.arquivo[i]);
@@ -27,12 +28,10 @@ class Interpretador{
 				v[end].setValor(this.arquivo[i]);
 			}
 			
-			//else if (this.arquivo[i].contains("fim_do_programa")){
-			//	break;
-			//}
-		}	
-		
-	}
-	
-	
+			//Caso seja encontrado fim_do_programa, o interpretador finaliza a leitura do arquivo.
+			else if (this.arquivo[i].contains("fim_do_programa")){
+				break;
+			}
+		}			
+	}	
 }
