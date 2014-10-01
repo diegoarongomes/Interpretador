@@ -23,13 +23,13 @@ class Interpretador{
 			else if (this.arquivo[i].contains("=")){
 				int end;
 				end = Variaveis.nomePesquisa(this.arquivo[i],v,pos);
-				if (end== -1) break;
+				if (end == -1) break;
 				v[end].setValor(this.arquivo[i]);
 			}
 			
-			//else if (this.arquivo[i].contains("fim_do_programa")){
-			//	break;
-			//}
+			else if (this.arquivo[i].contains("fim_do_programa")){
+				break;
+			}
 		}	
 		
 	}
