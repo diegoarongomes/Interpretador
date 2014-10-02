@@ -56,4 +56,19 @@ class Variaveis{
 		return -1;
 	}
 	
+	public static void ImprimeVariavel(string s1,Variaveis v[],int p){
+		int i,j;
+		String s = s1,nome;
+		i = s.indexOf("(");
+		String imprime = new String();
+		j = indexOf(")");
+		imprime = s.substring(i,j);
+		for (i=0;i<p;i++){
+			nome = v[i].getNome();
+			if (nome.compareTo(imprime) == 0) {
+				System.out.println(this.valor);
+			}
+		}
+		return -1;
+	}
 }

@@ -27,6 +27,8 @@ class Interpretador{
 				if (end == -1) break;
 				v[end].setValor(this.arquivo[i]);
 			}
+			else if (this.arquivo[i].contains("imprime")) {
+				
 			
 			//Caso seja encontrado fim_do_programa, o interpretador finaliza a leitura do arquivo.
 			else if (this.arquivo[i].contains("fim_do_programa")){
