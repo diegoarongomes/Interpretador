@@ -11,11 +11,13 @@ class Variaveis{
 	}
 	
 	public String getNome(){
+		//Retorna nome do objeto que roda o código.
 		return this.nome;
 	}
 	
-	//Método de criação de nova variável. Recebe a linha para ser interpretada e nela faz a leitura do nome da nova variável.
+	
 	public void criaVariavel(String s1){
+		//Método de criação de nova variável. Recebe a linha para ser interpretada e nela faz a leitura do nome da nova variável.
 		String s = s1;
 		int i,k;
 		i=s.lastIndexOf(";");
@@ -24,10 +26,11 @@ class Variaveis{
 		System.out.println("Nome:"+this.nome+" Valor:" +this.valor);
  	}
 	
-	/* Método para inserir valores em uma variável. O método recebe uma string que contém 
-	 * o nome da variável e o valor a ser colocado nela.
-	 * Ele encontra o numero na string, transforma em double, e coloca na variável valor do objeto v[i]*/
+	
 	public void setValor(String s1){
+		/* Método para inserir valores em uma variável. O método recebe uma string que contém 
+		* o nome da variável e o valor a ser colocado nela.
+		* Ele encontra o numero na string, transforma em double, e coloca na variável valor do objeto v[i]*/
 		int j;
 		double k;
 		String s = s1;
@@ -37,38 +40,45 @@ class Variaveis{
 		System.out.println("Nome:"+this.nome+" Valor:" +this.valor);
 	}
 	
-	/* Método de pesquisa, recebe um vetor de variáveis, um int com o tamanho do vetor, 
-	 * e uma string a ser procurada. Retorna o indice do vetor em que esta a variável
-	 * ou -1 caso não encontre a string no vetor.*/
+	
 	public static int nomePesquisa(String s1,Variaveis v[],int p){
-		int i,j;
+		/* Método de pesquisa, recebe um vetor de variáveis, um int com o tamanho do vetor, 
+		* e uma string a ser procurada. Retorna o indice do vetor em que esta a variável
+		* ou -1 caso não encontre a string no vetor.*/
+		int i,j=0,k=0;
 		String s = s1;
-		j = s.indexOf("=");		
+		if (s.contains("=")){
+			j = s.indexOf("=");
+			k=0;
+		}
+		else if(s.contains("Imprime") && s.contains("[")){
+			j= s.lastIndexOf(")");
+			k= s.lastIndexOf(",")+1;
+		}
+		else if(s.contains("Imprime")){
+			j=s.lastIndexOf(")");
+			k=s.lastIndexOf("(")+1;
+		}
+			
 		String n_busca = new String();
-		n_busca = s.substring(0,j);
-		String nome;
+		n_busca = s.substring(k,j);
 		for (i=0;i<p;i++){
-			nome = v[i].getNome();
-			if (nome.compareTo(n_busca) == 0){
+			if (v[i].nome.compareTo(n_busca) == 0){
 				return i;
 			}
 		}
 		return -1;
 	}
 	
-	public static void ImprimeVariavel(string s1,Variaveis v[],int p){
-		int i,j;
-		String s = s1,nome;
-		i = s.indexOf("(");
-		String imprime = new String();
-		j = indexOf(")");
-		imprime = s.substring(i,j);
-		for (i=0;i<p;i++){
-			nome = v[i].getNome();
-			if (nome.compareTo(imprime) == 0) {
-				System.out.println(this.valor);
-			}
+	
+	public void imprimeVariavel(String s1){
+		//Imprissão de variáveis. Pode imprimir texte junto com a variável.
+		String s = s1;
+		if (s.contains("[")){
+			System.out.print(s.substring((s.indexOf("[")+1),s.indexOf("]")));
+			System.out.println(this.valor);
 		}
-		return -1;
+		else
+			System.out.println(this.valor);		
 	}
 }

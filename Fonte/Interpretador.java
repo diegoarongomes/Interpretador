@@ -27,8 +27,13 @@ class Interpretador{
 				if (end == -1) break;
 				v[end].setValor(this.arquivo[i]);
 			}
-			else if (this.arquivo[i].contains("imprime")) {
-				
+			//3º SE. Caso encontre a ordem de imprimir.
+			else if (this.arquivo[i].contains("Imprime")) {
+				int end;
+				end = Variaveis.nomePesquisa(this.arquivo[i],v,pos);
+				if (end == -1) break;
+				v[end].imprimeVariavel(this.arquivo[i]);
+			}				
 			
 			//Caso seja encontrado fim_do_programa, o interpretador finaliza a leitura do arquivo.
 			else if (this.arquivo[i].contains("fim_do_programa")){
