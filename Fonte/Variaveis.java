@@ -70,6 +70,21 @@ class Variaveis{
 		return -1;
 	}
 	
+	public void expressao(String s1,Variaveis v,int p){
+		String s=s1;
+		int i,conta_op,
+		conta_op=0;
+		for (i=0;i<=p;i++){
+			if(s.contains(v[i].nome)){
+				s = s.replaceAll(v[i].nome,Double.toString(v[i].valor))
+			}
+		}
+		
+		//buscar o nome de uma variavel dentro da string.
+		
+		
+		
+	}
 	
 	public void imprimeVariavel(String s1){
 		//Imprissão de variáveis. Pode imprimir texte junto com a variável.

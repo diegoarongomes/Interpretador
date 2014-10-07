@@ -20,20 +20,31 @@ class Interpretador{
 				v[pos].criaVariavel(this.arquivo[i]);
 				pos++;
 			}
-			//2° SE. Caso a linha possua atribuição de valor do tipo a=2;
+			
+			//2º SE. Caso a linha contenha atribuição de expressões à uma variável.
+			else if (this.arquivo[i].contains("=") && (this.arquivo.contains("+") || this.arquivo.contains("-") ||
+			this.arquivo.contains("/") || this.arquivo.contains("*"))){
+				int end;
+				end = Variaveis.nomePesquisa(this.arquivo[i],v,pos);
+				v[end].expressao(this.arquivo[i],v,pos);
+				
+			}	
+			
+			//3° SE. Caso a linha possua atribuição de valor do tipo a=2;
 			else if (this.arquivo[i].contains("=")){
 				int end;
 				end = Variaveis.nomePesquisa(this.arquivo[i],v,pos);
 				if (end == -1) break;
 				v[end].setValor(this.arquivo[i]);
 			}
-			//3º SE. Caso encontre a ordem de imprimir.
+			//4º SE. Caso encontre a ordem de imprimir.
 			else if (this.arquivo[i].contains("Imprime")) {
 				int end;
 				end = Variaveis.nomePesquisa(this.arquivo[i],v,pos);
 				if (end == -1) break;
 				v[end].imprimeVariavel(this.arquivo[i]);
-			}				
+			}
+						
 			
 			//Caso seja encontrado fim_do_programa, o interpretador finaliza a leitura do arquivo.
 			else if (this.arquivo[i].contains("fim_do_programa")){
