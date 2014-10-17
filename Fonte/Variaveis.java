@@ -72,18 +72,58 @@ class Variaveis{
 	
 	public void expressao(String s1,Variaveis v,int p){
 		String s=s1;
-		int i,conta_op,
-		conta_op=0;
-		for (i=0;i<=p;i++){
-			if(s.contains(v[i].nome)){
-				s = s.replaceAll(v[i].nome,Double.toString(v[i].valor))
+		if (s.contains("+")){
+			this.operacao("+",v,p,s);
+		}
+		if (s.contains("-")){
+			this.operacao("-",v,p,s);
+		}
+		if (s.contains("*")){
+			this.operacao("*",v,p,s);
+		}
+		if (s.contains("/")){
+			this.operacao("/",v,p,s);
+		}	
+	}
+	
+	public void operacao(char op,Variaveis v1,int pos,String st){
+		int i,achou;
+		String s=st;
+		dooble[] d= new double[2];
+		achou=0;
+		for(i=0;i<pos;i++){
+			if(s.substring(indexOf("=")+1,indexOf(op)).contains(v[i].nome)){
+				d[0]=v[i].valor;
+				achou++;
+				break;
 			}
 		}
+		if (achou==0) d[0]=nextDouble(s.substring(indexOf("=")+1,indexOf(op)));
 		
-		//buscar o nome de uma variavel dentro da string.
+		achou=0;
+		for(i=0;i<pos;i++){
+			if(s.substring(indexOf(op)+1,indexOf(";")).contains(v[i].nome)){
+				d[1]=v[i].valor;
+				achou++;
+				break;
+			}
+		}
+		if (achou==0) d[01=nextDouble(s.substring(indexOf(op)+1,indexOf(";")));
 		
-		
-		
+		switch(op){
+			case "+":
+				this.valor=d[0]+d[1];
+				break;
+			case "-":
+				this.valor=d[0]-d[1];
+				break;
+			case "*":
+				this.valor=d[0]*d[1];
+				break;
+			case "/":
+				this.valor=d[0]/d[1];
+				break;
+		}
 	}
 	
 	public void imprimeVariavel(String s1){
