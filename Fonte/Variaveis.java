@@ -92,7 +92,7 @@ class Variaveis{
 				break;
 			}
 		}
-		if (achou==0){ d[01]=Double.parseDouble(s.substring(s.indexOf(op)+1,s.indexOf(";")));}
+		if (achou==0){ d[1]=Double.parseDouble(s.substring(s.indexOf(op)+1,s.indexOf(";")));}
 		
 		switch(op){
 			case '+':
@@ -124,28 +124,32 @@ class Variaveis{
 		
 		achou=0;
 		for(i=0;i<pos;i++){
-			if(s1.substring(s1.indexOf(op)+1,s1.indexOf(")")).contains(v1[i].nome)){
-				d[1]=v1[i].valor;
-				achou++;
-				break;
+			if(s1.contains("=")){
+				if(s1.substring(s1.indexOf("=")+1,s1.indexOf(")")).contains(v1[i].nome)){
+					d[1]=v1[i].valor;
+					achou++;
+					break;
+				}
+			}
+			else {
+				if(s1.substring(s1.indexOf(op)+1,s1.indexOf(")")).contains(v1[i].nome)){
+					d[1]=v1[i].valor;
+					achou++;
+					break;
+				}
 			}
 		}
-		if (achou==0) d[01]=Double.parseDouble(s1.substring(s1.indexOf(op)+1,s1.indexOf(")")));
-		
-		switch(op){
-			case ">":
-				return d[0]>d[1];
-			case "<":
-				return d[0]<d[1];
-			case ">=":
-				return d[0]>=d[1];
-			case "<=":
-				return d[0]<=d[1];
-			case "==":
-				return d[0]==d[1];
-			case "!=":
-				return d[0]!=d[1];	
+		if (achou==0){
+			if(s1.contains("=")){d[1]=Double.parseDouble(s1.substring(s1.indexOf("=")+1,s1.indexOf(")")));}
+			else {d[1]=Double.parseDouble(s1.substring(s1.indexOf(op)+1,s1.indexOf(")")));}
 		}
+		if (s1.contains(">=")) {return d[0]>=d[1];}
+		else if (s1.contains("<=")) {return d[0]<=d[1];}
+		else if (s1.contains(">")){return d[0]>d[1];}
+		else if (s1.contains("<")){return d[0]<d[1];}
+		else if (s1.contains("==")){return d[0]==d[1];}
+		else if (s1.contains("!=")){return d[0]!=d[1];}	
+
 		return false;
 	}
 	
