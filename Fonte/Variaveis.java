@@ -23,7 +23,7 @@ class Variaveis{
 		i=s.lastIndexOf(";");
 		k=s.lastIndexOf(":");
 		this.nome = s.substring(k+1,i);
-		System.out.println("Nome:"+this.nome+" Valor:" +this.valor);
+		//System.out.println("Nome:"+this.nome+" Valor:" +this.valor);
  	}
 	
 	
@@ -37,7 +37,7 @@ class Variaveis{
 		j = s.indexOf("=");			
 		k = Double.parseDouble(s.substring(j+1,s.indexOf(";")));
 		this.valor = k;
-		System.out.println("Nome:"+this.nome+" Valor:" +this.valor);
+		//System.out.println("Nome:"+this.nome+" Valor:" +this.valor);
 	}
 	
 	
@@ -69,61 +69,84 @@ class Variaveis{
 		}
 		return -1;
 	}
-	
-	public void expressao(String s1,Variaveis v,int p){
-		String s=s1;
-		if (s.contains("+")){
-			this.operacao("+",v,p,s);
-		}
-		if (s.contains("-")){
-			this.operacao("-",v,p,s);
-		}
-		if (s.contains("*")){
-			this.operacao("*",v,p,s);
-		}
-		if (s.contains("/")){
-			this.operacao("/",v,p,s);
-		}	
-	}
-	
-	public void operacao(char op,Variaveis v1,int pos,String st){
+		
+	public void operacao(char op,Variaveis[] v1,int pos,String st){
 		int i,achou;
-		String s=st;
-		dooble[] d= new double[2];
+		String s = st;
+		double d[]= new double[2];
 		achou=0;
 		for(i=0;i<pos;i++){
-			if(s.substring(indexOf("=")+1,indexOf(op)).contains(v[i].nome)){
-				d[0]=v[i].valor;
+			if(s.substring(s.indexOf("=")+1,s.indexOf(op)).contains(v1[i].nome)){
+				d[0]=v1[i].valor;
 				achou++;
 				break;
 			}
 		}
-		if (achou==0) d[0]=nextDouble(s.substring(indexOf("=")+1,indexOf(op)));
+		if (achou==0) d[0]=Double.parseDouble(s.substring(s.indexOf("=")+1,s.indexOf(op)));
 		
 		achou=0;
 		for(i=0;i<pos;i++){
-			if(s.substring(indexOf(op)+1,indexOf(";")).contains(v[i].nome)){
-				d[1]=v[i].valor;
+			if(s.substring(s.indexOf(op)+1,s.indexOf(";")).contains(v1[i].nome)){
+				d[1]=v1[i].valor;
 				achou++;
 				break;
 			}
 		}
-		if (achou==0) d[01=nextDouble(s.substring(indexOf(op)+1,indexOf(";")));
+		if (achou==0){ d[01]=Double.parseDouble(s.substring(s.indexOf(op)+1,s.indexOf(";")));}
 		
 		switch(op){
-			case "+":
+			case '+':
 				this.valor=d[0]+d[1];
 				break;
-			case "-":
+			case '-':
 				this.valor=d[0]-d[1];
 				break;
-			case "*":
+			case '*':
 				this.valor=d[0]*d[1];
 				break;
-			case "/":
+			case '/':
 				this.valor=d[0]/d[1];
 				break;
 		}
+	}
+	public static boolean expressaoSe(String op,String s1,int pos,Variaveis v1[]){
+		int i,achou;
+		double d[]= new double[2];
+		achou=0;
+		for(i=0;i<pos;i++){
+			if(s1.substring(s1.indexOf("(")+1,s1.indexOf(op)).contains(v1[i].nome)){
+				d[0]=v1[i].valor;
+				achou++;
+				break;
+			}
+		}
+		if (achou==0) d[0]=Double.parseDouble(s1.substring(s1.indexOf("(")+1,s1.indexOf(op)));
+		
+		achou=0;
+		for(i=0;i<pos;i++){
+			if(s1.substring(s1.indexOf(op)+1,s1.indexOf(")")).contains(v1[i].nome)){
+				d[1]=v1[i].valor;
+				achou++;
+				break;
+			}
+		}
+		if (achou==0) d[01]=Double.parseDouble(s1.substring(s1.indexOf(op)+1,s1.indexOf(")")));
+		
+		switch(op){
+			case ">":
+				return d[0]>d[1];
+			case "<":
+				return d[0]<d[1];
+			case ">=":
+				return d[0]>=d[1];
+			case "<=":
+				return d[0]<=d[1];
+			case "==":
+				return d[0]==d[1];
+			case "!=":
+				return d[0]!=d[1];	
+		}
+		return false;
 	}
 	
 	public void imprimeVariavel(String s1){
