@@ -1,0 +1,12 @@
+//Condicional Simples
+
+Var: a;
+Imprime([Digite um numero: ]);
+Digite(a);
+Inicio.se(a>=0)
+	Imprime([Numero positivo]);
+Fim.se;
+Senao
+	Imprime([Numero negativo]);
+Fim.senao;
+fim_de_programa;

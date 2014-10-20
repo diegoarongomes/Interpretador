@@ -1,0 +1,8 @@
+//Criação e atribuição de valores
+
+Var: a;
+a = 2 + 3;
+Imprime(a);
+a = a * 2;
+Imprime([Valor Final: ],a);
+fim_de_programa;

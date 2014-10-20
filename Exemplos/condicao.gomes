@@ -1,0 +1,15 @@
+//Programa para teste de condições
+//Escrito em linguagem Gomes
+Var: a;
+Var: b;
+Imprime([Digite um valor: ]);
+Digite(a);
+Imprime([Digite um valor: ]);
+Digite(b);
+Inicio.se(a>b);
+	Imprime([Primeiro maior que o segundo]);
+Fim.se;
+Senao;
+	Imprime([Primeiro menor ou igual ao segundo]);
+Fim.senao;
+fim_de_programa;
