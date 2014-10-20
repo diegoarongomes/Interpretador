@@ -1,6 +1,9 @@
+/* Programa interpretador da Linguagem Gomes. Desenvolvido:
+ * Dionatan Gomes (dionatangomes08@gmail.com)
+ * Diego Aron Gomes (diegoarongomes@gmail.com)
+ * Trabalho 1 da Disciplina de Programação 1. Professor Fernando Bevilacqua.*/
 import java.util.Scanner;
 import java.io.*;
-
 class Gomes {
     public static void main(String args[]) throws Exception {
         File f;
