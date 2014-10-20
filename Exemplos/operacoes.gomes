@@ -1,0 +1,21 @@
+//Programa escrito na linguagem Gomes
+//Programa que faz calculos aritméticos básicos
+Var: a;
+Var: b;
+Var: c;
+Var:x;
+Imprime([Entre um numero: ]);
+Digite(a);
+Imprime([Entre um numero: ]);
+Digite(b);
+c=a+b;
+x=c/2;
+Imprime([Media: ],x);
+x=a*b;
+Imprime([Multi: ],x);
+x=a-b;
+Imprime([Subtracao: ],x);
+x=a+b;
+Imprime([Adicao: ],x);
+
+fim_do_programa
