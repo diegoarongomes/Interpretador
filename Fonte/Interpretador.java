@@ -9,8 +9,13 @@ class Interpretador{
 	//Método que faz a leitura linha por linha.
 	public void interpretaCod (String linhas[]){
 		this.arquivo = linhas;
-		int i,pos;
-		boolean se=false;
+		int i,pos,j,k,y;
+		int []caso = new int[10];
+		int []enquanto = new int[10];
+		boolean []se = new boolean[10];
+		y=0;
+		k=0;
+		j=0;//Controla os laços e condições.
 		pos=0;//Será o indice do vetor de variáveis.		
 		
 		for (i=0;i<=this.arquivo.length && this.arquivo[i]!= null;i++){
@@ -21,40 +26,87 @@ class Interpretador{
 			// Dentro do laço, selecionamos uma linha por vez para interpretar, em busca de Totens que auxiliem nos processos..
 			
 			//1º SE. Caso encontre o inicio ou fim de uma condição "SE".
-			if(this.arquivo[i].contains("Inicio.se")){
+			if(this.arquivo[i].contains("Inicio.se")||this.arquivo[i].contains("Enquanto")){
+				
+				//Verifica o que está rodando prioritariamente: SE ou ENQUANTO.
+				if (this.arquivo[i].contains("Inicio.se")&&y==0){
+					caso[j]=1;
+					y=1;
+					j++;
+				}
+				else if(this.arquivo[i].contains("Enquanto")&&k==0){
+					caso[j]=2;
+					enquanto[j]=i;
+					j++;
+				}
+				//Resolve as expressões:
 				if (arquivo[i].contains("<=")){
-					se=Variavel.expressaoSe("<=",arquivo[i],pos,v);
+					se[j-1]=Variavel.expressaoSe("<=",arquivo[i],pos,v);
 				}
 				else if (arquivo[i].contains(">=")){
-					se=Variavel.expressaoSe(">=",arquivo[i],pos,v);
+					se[j-1]=Variavel.expressaoSe(">=",arquivo[i],pos,v);
 				}
 				else if (arquivo[i].contains(">")){
-					se=Variavel.expressaoSe(">",arquivo[i],pos,v);
+					se[j-1]=Variavel.expressaoSe(">",arquivo[i],pos,v);
 				}
 				else if (arquivo[i].contains("<")){
-					se=Variavel.expressaoSe("<",arquivo[i],pos,v);
+					se[j-1]=Variavel.expressaoSe("<",arquivo[i],pos,v);
 				}				
 				else if (arquivo[i].contains("==")){
-					se=Variavel.expressaoSe("==",arquivo[i],pos,v);
+					se[j-1]=Variavel.expressaoSe("==",arquivo[i],pos,v);
 				}
 				else if (arquivo[i].contains("!=")){
-					se=Variavel.expressaoSe("!=",arquivo[i],pos,v);
+					se[j-1]=Variavel.expressaoSe("!=",arquivo[i],pos,v);
 				}
-				if (se) {continue;}
-				else{
+				
+				if (se[j-1]) {
+					continue;
+				}	
+				else if(caso[j-1]==1){
 					i++;
 					for(i=i;i<this.arquivo.length;i++){
-						if(this.arquivo[i].contains("Fim.se")){break;}
+						if(this.arquivo[i].contains("Fim.se")){
+							y=0;j--;
+							break;
+						}
 					}
+					continue;
 				}
+				else if(caso[j-1]==2){
+					i++;
+					for(i=i;i<this.arquivo.length;i++){
+						if(this.arquivo[i].contains("Fim.enquanto")){
+							j--;k=0;
+							break;
+						}
+					}
+					continue;
+				}			
 			}
-			if ((this.arquivo[i].contains("Senao")&&(!se))||this.arquivo[i].contains("Fim.se")){continue;}
-			else if(this.arquivo[i].contains("Senao")&&(se)){
+			
+			else if (this.arquivo[i].contains("Senao")&&(!se[j])){
+				continue;
+			}
+			else if(this.arquivo[i].contains("Senao")&&(se[j])){
 				i++;
 				for(i=i;i<this.arquivo.length;i++){
 					if(this.arquivo[i].contains("Fim.senao"))break;
 				}
-			}			
+				continue;
+			}
+			else if(this.arquivo[i].contains("Fim.senao")){
+				continue;
+			}	
+			else if (this.arquivo[i].contains("Fim.se")){
+				y=0;
+				j--;
+			}
+			else if(this.arquivo[i].contains("Fim.enquanto")&&(se[j-1])){
+				i=enquanto[j-1]-1;
+				k=1;
+				continue;
+			}
+					
 			
 			// 2° SE. Caso a linha contenha a palavra Var, entende-se como criação de variável do tipo Var:nome;
 			else if (this.arquivo[i].contains("Var")){
@@ -95,7 +147,7 @@ class Interpretador{
 				else{
 					int end;
 					end = Variavel.nomePesquisa(this.arquivo[i],v,pos);
-					v[end].imprimeVariavel(this.arquivo[i]);
+					v[end].imprimeVariavel(this.arquivo[i]);	
 				}
 			}
 			 // 6° SE. Caso encontre o comando de entrada de valor pelo teclado;
@@ -109,7 +161,7 @@ class Interpretador{
 			
 			
 			//Caso seja encontrado fim_do_programa, o interpretador finaliza a leitura do arquivo.
-			else if (this.arquivo[i].contains("fim_do_programa")){
+			else if (this.arquivo[i].contains("Fim.do.programa")){
 				break;
 			}
 		}			

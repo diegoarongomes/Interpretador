@@ -170,6 +170,6 @@ class Variavel{
 			System.out.println(this.valor);		
 	}
 	public static void imprimeTexto(String s1){
-		System.out.print(s1.substring((s1.indexOf("[")+1),s1.indexOf("]")));
+		System.out.println(s1.substring((s1.indexOf("[")+1),s1.indexOf("]")));
 	}
 }
