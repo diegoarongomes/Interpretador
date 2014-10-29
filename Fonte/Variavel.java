@@ -114,11 +114,7 @@ class Variavel{
 		int i,achou;
 		double d[]= new double[2];
 		achou=0;
-		/*if (!s1.contains(">")&&!s1.contains("<")&&!s1.contains(">=")&&!s1.contains("<=")&&!s1.contains("==")&&!s1.contains("!=")){
-			int end = Variavel.nomePesquisa(s1,v1,pos);
-			if (v1[end].valor==0) return false;
-			else return true;
-		}*/
+	
 		for(i=0;i<pos;i++){
 			if(s1.substring(s1.indexOf("(")+1,s1.indexOf(op)).contains(v1[i].nome)){
 				d[0]=v1[i].valor;
@@ -131,7 +127,7 @@ class Variavel{
 		achou=0;
 		for(i=0;i<pos;i++){
 			if(s1.contains("=")){
-				if(s1.substring(s1.indexOf("=")+1,s1.indexOf(")")).contains(v1[i].nome)){
+				if(s1.substring(s1.lastIndexOf("=")+1,s1.indexOf(")")).contains(v1[i].nome)){
 					d[1]=v1[i].valor;
 					achou++;
 					break;
@@ -146,7 +142,7 @@ class Variavel{
 			}
 		}
 		if (achou==0){
-			if(s1.contains("=")){d[1]=Double.parseDouble(s1.substring(s1.indexOf("=")+1,s1.indexOf(")")));}
+			if(s1.contains("=")){d[1]=Double.parseDouble(s1.substring(s1.lastIndexOf("=")+1,s1.indexOf(")")));}
 			else {d[1]=Double.parseDouble(s1.substring(s1.indexOf(op)+1,s1.indexOf(")")));}
 		}
 		if (s1.contains(">=")) {return d[0]>=d[1];}
