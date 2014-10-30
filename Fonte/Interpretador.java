@@ -117,7 +117,7 @@ class Interpretador{
 			
 			// 3º SE. Caso a linha contenha atribuição de expressões à uma variável.
 			else if (this.arquivo[i].contains("=") && (this.arquivo[i].contains("+") || this.arquivo[i].contains("-") ||
-			this.arquivo[i].contains("/") || this.arquivo[i].contains("*"))){
+			this.arquivo[i].contains("/") || this.arquivo[i].contains("*")||this.arquivo[i].contains("%"))){
 				int end;
 				end = Variavel.nomePesquisa(this.arquivo[i],v,pos);
 				if (arquivo[i].contains("+")){
@@ -131,6 +131,9 @@ class Interpretador{
 				}
 				else if (arquivo[i].contains("/")){
 					v[end].operacao('/',v,pos,arquivo[i]);
+				}
+				else if (arquivo[i].contains("%")){
+					v[end].operacao('%',v,pos,arquivo[i]);
 				}
 			}	
 			

@@ -1,0 +1,23 @@
+//Programa escrito na linguagem Gomes
+//Teste função Enquanto
+Var:a;
+a = 5;
+Enquanto(a>0);
+  Imprime([Imprime a: ],a);
+  Inicio.se(a>=3);
+    Imprime([Ainda eh maior ou igual a 3.]);
+  Fim.se;
+  Senao;
+    Imprime([Agora eh menor que 3]);
+  Fim.senao;
+  a=a-1;
+Fim.enquanto;
+Enquanto (a<=10);
+  Imprime([Subindo a: ],a);
+  Inicio.se(a==9);
+    Imprime([Igual a nove.]);
+  Fim.se;
+  a = a +1; 
+Fim.enquanto;
+Imprime([Fim]);
+Fim.do.programa;

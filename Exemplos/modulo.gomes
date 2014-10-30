@@ -1,0 +1,16 @@
+//Programa escrito em linguagem gomes
+//teste %
+
+Var:a;
+Var:b;
+Digite(a);
+Digite(b);
+Var:c;
+c=a%b;
+Inicio.se(c==0);
+  Imprime([Sao multiplos]);
+Fim.se;
+Senao;
+  Imprime([Nao sao multiplos]);
+Fim.senao;
+Fim.do.programa;

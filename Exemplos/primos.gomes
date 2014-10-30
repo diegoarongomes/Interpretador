@@ -1,0 +1,28 @@
+//Programa escrito em linguagem Gomes
+//Calcula se o número dado é primo
+Var:a;
+Var:b;
+Var:c;
+Var:eh_primo;
+Imprime([Digite um numero maior que 2: ]);
+Digite(a);
+b=2;
+Enquanto(b<a);
+  c=a%b;
+  Inicio.se(c==0);
+    eh_primo=1;
+  Fim.se;
+  b = b + 1;
+Fim.enquanto;
+Inicio.se(a<=2);
+  Imprime([Numero invalido]);
+  Fim.do.programa;
+Fim.se;
+Inicio.se(eh_primo==0);
+  Imprime([O numero eh primo.]);
+Fim.se;
+Senao
+  Imprime([Nao eh primo.]);
+Fim.senao;
+Fim.do.programa;
+  

@@ -108,6 +108,11 @@ class Variavel{
 			case '/':
 				this.valor=d[0]/d[1];
 				break;
+			case '%':
+				int a=(int)d[0];
+				int b=(int)d[1];
+				this.valor=a%b;
+				break;
 		}
 	}
 	public static boolean expressaoSe(String op,String s1,int pos,Variavel v1[]){
