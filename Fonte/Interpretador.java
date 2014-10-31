@@ -18,10 +18,13 @@ class Interpretador{
 		j=0;//Controla os laços e condições.
 		pos=0;//Será o indice do vetor de variáveis.		
 		
+		//O laço irá selecionar uma linha por ver para ser interpretada.
 		for (i=0;i<=this.arquivo.length && this.arquivo[i]!= null;i++){
 			if (this.arquivo[i].contains("//")) continue;
+			//Retira os espaços da linha, exceto linhas com a palavra Imprime.
 			if (!this.arquivo[i].contains("Imprime")){
 				this.arquivo[i]=this.arquivo[i].replaceAll(" ","");
+				this.arquivo[i]=this.arquivo[i].replaceAll("\t","");
 			}
 			// Dentro do laço, selecionamos uma linha por vez para interpretar, em busca de Totens que auxiliem nos processos..
 			
@@ -58,10 +61,9 @@ class Interpretador{
 				else if (arquivo[i].contains("!=")){
 					se[j-1]=Variavel.expressaoSe("!=",arquivo[i],pos,v);
 				}
-				
 				if (se[j-1]) {
 					continue;
-				}	
+				}
 				else if(caso[j-1]==1){
 					i++;
 					for(i=i;i<this.arquivo.length;i++){
@@ -106,6 +108,17 @@ class Interpretador{
 				k=1;
 				continue;
 			}
+			else if(this.arquivo[i].contains("Quebra.laco")){
+				i++;
+				for(i=i;i<this.arquivo.length;i++){
+					if(this.arquivo[i].contains("Fim.enquanto")){
+						if(caso[j-1]==1){j--;y=0;}
+						j--;k=0;						
+						break;
+					}
+				}
+				continue;
+			}
 					
 			
 			// 2° SE. Caso a linha contenha a palavra Var, entende-se como criação de variável do tipo Var:nome;
@@ -116,23 +129,26 @@ class Interpretador{
 			}
 			
 			// 3º SE. Caso a linha contenha atribuição de expressões à uma variável.
-			else if (this.arquivo[i].contains("=") && (this.arquivo[i].contains("+") || this.arquivo[i].contains("-") ||
+			else if ((this.arquivo[i].contains("=")||this.arquivo[i].contains("++")) && (this.arquivo[i].contains("+") || this.arquivo[i].contains("-") ||
 			this.arquivo[i].contains("/") || this.arquivo[i].contains("*")||this.arquivo[i].contains("%"))){
 				int end;
 				end = Variavel.nomePesquisa(this.arquivo[i],v,pos);
-				if (arquivo[i].contains("+")){
+				if(this.arquivo[i].contains("++")){
+					v[end].operacao('I',v,pos,arquivo[i]);
+				}
+				else if (this.arquivo[i].contains("+")){
 					v[end].operacao('+',v,pos,arquivo[i]);
 				}
-				else if(arquivo[i].contains("-")){
+				else if(this.arquivo[i].contains("-")){
 					v[end].operacao('-',v,pos,arquivo[i]);
 				}
-				else if (arquivo[i].contains("*")){
+				else if (this.arquivo[i].contains("*")){
 					v[end].operacao('*',v,pos,arquivo[i]);
 				}
-				else if (arquivo[i].contains("/")){
+				else if (this.arquivo[i].contains("/")){
 					v[end].operacao('/',v,pos,arquivo[i]);
 				}
-				else if (arquivo[i].contains("%")){
+				else if (this.arquivo[i].contains("%")){
 					v[end].operacao('%',v,pos,arquivo[i]);
 				}
 			}	

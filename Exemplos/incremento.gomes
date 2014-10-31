@@ -1,0 +1,15 @@
+//Programa escrito em linguagem Gomes;
+//Teste de incremento;
+
+Var:a;
+Digite(a);
+Imprime([Atual: ],a);
+Enquanto(a<150);
+	a++;
+	Imprime([Incrementado: ],a);
+	Inicio.se(a==90);
+		Quebra.laco;
+	Fim.se;
+Fim.enquanto;
+Imprime([Final: ],a);
+Fim.do.programa;

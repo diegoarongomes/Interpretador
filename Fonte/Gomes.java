@@ -1,4 +1,4 @@
-/* Programa interpretador da Linguagem Gomes. Desenvolvido:
+/* Programa interpretador da Linguagem Gomes. Desenvolvido por:
  * Dionatan Gomes (dionatangomes08@gmail.com)
  * Diego Aron Gomes (diegoarongomes@gmail.com)
  * Trabalho 1 da Disciplina de Programação 1. Professor Fernando Bevilacqua.*/
@@ -34,7 +34,7 @@ class Gomes {
         } catch (IOException e) {
             System.out.println("Nao consegui ler o arquivo: " + (args.length > 0 ? args[0] : "(desconhecido)"));
             System.out.println("Uso:");
-            System.out.println("    java Blah /caminho/para/arquivo.blah");
+            System.out.println("    java Gomes /caminho/para/arquivo.gomes");
         }        
     }
 }

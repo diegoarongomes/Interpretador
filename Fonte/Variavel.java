@@ -60,6 +60,10 @@ class Variavel{
 			j = s.indexOf("=");
 			k=0;
 		}
+		else if(s.contains("++")){
+			j = s.indexOf("+");
+			k=0;
+		}
 		
 			
 		String n_busca = new String();
@@ -77,42 +81,47 @@ class Variavel{
 		String s = st;
 		double d[]= new double[2];
 		achou=0;
-		for(i=0;i<pos;i++){
-			if(s.substring(s.indexOf("=")+1,s.indexOf(op)).contains(v1[i].nome)){
-				d[0]=v1[i].valor;
-				achou++;
-				break;
-			}
+		if (s.contains("++")){
+			this.valor = this.valor + 1;
 		}
-		if (achou==0) d[0]=Double.parseDouble(s.substring(s.indexOf("=")+1,s.indexOf(op)));
-		
-		achou=0;
-		for(i=0;i<pos;i++){
-			if(s.substring(s.indexOf(op)+1,s.indexOf(";")).contains(v1[i].nome)){
-				d[1]=v1[i].valor;
-				achou++;
-				break;
+		else{
+			for(i=0;i<pos;i++){
+				if(s.substring(s.indexOf("=")+1,s.indexOf(op)).contains(v1[i].nome)){
+					d[0]=v1[i].valor;
+					achou++;
+					break;
+				}
 			}
-		}
-		if (achou==0){ d[1]=Double.parseDouble(s.substring(s.indexOf(op)+1,s.indexOf(";")));}
-		switch(op){
-			case '+':
-				this.valor=d[0]+d[1];
-				break;
-			case '-':
-				this.valor=d[0]-d[1];
-				break;
-			case '*':
-				this.valor=d[0]*d[1];
-				break;
-			case '/':
-				this.valor=d[0]/d[1];
-				break;
-			case '%':
-				int a=(int)d[0];
-				int b=(int)d[1];
-				this.valor=a%b;
-				break;
+			if (achou==0) d[0]=Double.parseDouble(s.substring(s.indexOf("=")+1,s.indexOf(op)));
+			
+			achou=0;
+			for(i=0;i<pos;i++){
+				if(s.substring(s.indexOf(op)+1,s.indexOf(";")).contains(v1[i].nome)){
+					d[1]=v1[i].valor;
+					achou++;
+					break;
+				}
+			}
+			if (achou==0){ d[1]=Double.parseDouble(s.substring(s.indexOf(op)+1,s.indexOf(";")));}
+			switch(op){
+				case '+':
+					this.valor=d[0]+d[1];
+					break;
+				case '-':
+					this.valor=d[0]-d[1];
+					break;
+				case '*':
+					this.valor=d[0]*d[1];
+					break;
+				case '/':
+					this.valor=d[0]/d[1];
+					break;
+				case '%':
+					int a=(int)d[0];
+					int b=(int)d[1];
+					this.valor=a%b;
+					break;
+			}
 		}
 	}
 	public static boolean expressaoSe(String op,String s1,int pos,Variavel v1[]){
