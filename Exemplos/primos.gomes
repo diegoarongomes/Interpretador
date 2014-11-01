@@ -16,7 +16,7 @@ Enquanto(b<a);
 	b ++;
 Fim.enquanto;
 Inicio.se(a<=2);
-	Imprime([Numero invalido]);
+	Imprime([Numero invalido, mas primo]);
 	Fim.do.programa;
 Fim.se;
 Inicio.se(eh_primo==0);

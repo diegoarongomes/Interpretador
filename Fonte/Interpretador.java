@@ -13,8 +13,8 @@ class Interpretador{
 		int []caso = new int[10];
 		int []enquanto = new int[10];
 		boolean []se = new boolean[10];
-		y=0;
-		k=0;
+		y=0;//controla a criação dos Ifs
+		k=0;//controla a criação dos Whiles
 		j=0;//Controla os laços e condições.
 		pos=0;//Será o indice do vetor de variáveis.		
 		
@@ -162,7 +162,7 @@ class Interpretador{
 			}
 			// 5º SE. Caso encontre a ordem de imprimir.
 			else if (this.arquivo[i].contains("Imprime")) {
-				if (!this.arquivo[i].contains(",")&&this.arquivo[i].contains("[")) {Variavel.imprimeTexto(this.arquivo[i]);}
+				if (!this.arquivo[i].contains("],")&&this.arquivo[i].contains("[")) {Variavel.imprimeTexto(this.arquivo[i]);}
 				else{
 					int end;
 					end = Variavel.nomePesquisa(this.arquivo[i],v,pos);
