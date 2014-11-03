@@ -9,11 +9,11 @@ class Interpretador{
 	//Método que faz a leitura linha por linha.
 	public void interpretaCod (String linhas[]){
 		this.arquivo = linhas;
-		int i,pos,j,k,y;
+		int i,pos,j,k,conta_laco;
 		int []caso = new int[10];
 		int []enquanto = new int[10];
 		boolean []se = new boolean[10];
-		y=0;//controla a criação dos Ifs
+		conta_laco=0;//controla a criação dos Ifs
 		k=0;//controla a criação dos Whiles
 		j=0;//Controla os laços e condições.
 		pos=0;//Será o indice do vetor de variáveis.		
@@ -32,14 +32,17 @@ class Interpretador{
 			if(this.arquivo[i].contains("Inicio.se")||this.arquivo[i].contains("Enquanto")){
 				
 				//Verifica o que está rodando prioritariamente: SE ou ENQUANTO.
-				if (this.arquivo[i].contains("Inicio.se")&&y==0){
+				if(this.arquivo[i].contains("Enquanto")&&(k==1)&&(i!=enquanto[j-1])){
+					k=0;
+				}
+				if (this.arquivo[i].contains("Inicio.se")){
 					caso[j]=1;
-					y=1;
 					j++;
 				}
 				else if(this.arquivo[i].contains("Enquanto")&&k==0){
 					caso[j]=2;
 					enquanto[j]=i;
+					k=1;
 					j++;
 				}
 				//Resolve as expressões:
@@ -68,16 +71,19 @@ class Interpretador{
 					i++;
 					for(i=i;i<this.arquivo.length;i++){
 						if(this.arquivo[i].contains("Fim.se")){
-							y=0;j--;
+							j--;
 							break;
 						}
 					}
 					continue;
 				}
 				else if(caso[j-1]==2){
+					conta_laco=0;
 					i++;
 					for(i=i;i<this.arquivo.length;i++){
-						if(this.arquivo[i].contains("Fim.enquanto")){
+						if((this.arquivo[i].contains("Enquanto"))){conta_laco++;}
+						else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco>0){conta_laco--;}
+						else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco==0){
 							j--;k=0;
 							break;
 						}
@@ -100,20 +106,20 @@ class Interpretador{
 				continue;
 			}	
 			else if (this.arquivo[i].contains("Fim.se")){
-				y=0;
 				j--;
 			}
 			else if(this.arquivo[i].contains("Fim.enquanto")&&(se[j-1])){
 				i=enquanto[j-1]-1;
-				k=1;
 				continue;
 			}
 			else if(this.arquivo[i].contains("Quebra.laco")){
+				conta_laco=0;
 				i++;
 				for(i=i;i<this.arquivo.length;i++){
-					if(this.arquivo[i].contains("Fim.enquanto")){
-						if(caso[j-1]==1){j--;y=0;}
-						j--;k=0;						
+					if((this.arquivo[i].contains("Enquanto"))){conta_laco++;}
+					else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco>0){conta_laco--;}
+					else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco==0){
+						j--;k=0;
 						break;
 					}
 				}

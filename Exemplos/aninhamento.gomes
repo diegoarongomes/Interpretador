@@ -1,0 +1,19 @@
+//Programa escrito em linguagem Gomes
+//teste de aninhamento
+Var:dionatan;
+Var:diego;
+dionatan=2;
+diego=3;
+Enquanto(dionatan<=2);
+	Imprime([Entrei no primeiro]);
+	Enquanto(diego<=3);
+		Imprime([Entrei no segundo]);
+		diego++;
+		Inicio.se(diego==4);
+			Imprime([Estou no IF]);
+		Fim.se;
+	Fim.enquanto;
+	dionatan++;
+Fim.enquanto;
+Imprime([Consegui sair. Deu certo]);
+Fim.do.programa;
