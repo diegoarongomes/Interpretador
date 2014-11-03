@@ -64,6 +64,10 @@ class Variavel{
 			j = s.indexOf("+");
 			k=0;
 		}
+		else if(s.contains("--")){
+			j = s.indexOf("-");
+			k=0;
+		}
 		
 			
 		String n_busca = new String();
@@ -83,6 +87,9 @@ class Variavel{
 		achou=0;
 		if (s.contains("++")){
 			this.valor = this.valor + 1;
+		}
+		else if (s.contains("--")){
+			this.valor = this.valor - 1;
 		}
 		else{
 			for(i=0;i<pos;i++){

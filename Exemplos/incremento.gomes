@@ -1,15 +1,22 @@
 //Programa escrito em linguagem Gomes;
-//Teste de incremento;
+//Teste de incremento e decremento;
 
 Var:a;
+Imprime([Digite numero menor que 25.]);
 Digite(a);
 Imprime([Atual: ],a);
-Enquanto(a<150);
+Enquanto(a<50);
 	a++;
 	Imprime([Incrementado: ],a);
-	Inicio.se(a==90);
+	Inicio.se(a==30);
 		Quebra.laco;
 	Fim.se;
 Fim.enquanto;
-Imprime([Final: ],a);
+Enquanto(a>0);
+	a--;
+	Imprime([Decrementado: ],a);
+	Inicio.se(a==5);
+		Quebra.laco;
+	Fim.se;
+Fim.enquanto;
 Fim.do.programa;
