@@ -1,0 +1,22 @@
+//Programa escrito em linguagem Gomes
+//Teste aninhamento complexo
+Var:a;
+Var:b;
+Var:c;
+a=0;
+b=0;
+c=0;
+Enquanto(a<10);
+	Enquanto (b<10);
+		Enquanto (c < 10);
+			Imprime (c);
+			c++;
+		Fim.enquanto;
+		Imprime(b);
+		b++;
+	Fim.enquanto;
+	Imprime(a);
+	a++;
+Fim.enquanto.
+Imprime([Saiu.]);
+Fim.do.programa;

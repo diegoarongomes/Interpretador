@@ -2,9 +2,9 @@
 //teste de aninhamento
 Var:a;
 Var:b;
-a=2;
+a=0;
 b=3;
-Enquanto(a<=2);
+Enquanto(a<=10);
 	Imprime([Entrei no primeiro]);
 	Enquanto(b<=3);
 		Imprime([Entrei no segundo]);
@@ -14,6 +14,9 @@ Enquanto(a<=2);
 		Fim.se;
 	Fim.enquanto;
 	a++;
+	Inicio.se(a > 5);
+		Imprime(a);
+	Fim.se;
 Fim.enquanto;
 Imprime([Consegui sair. Deu certo]);
 Fim.do.programa;

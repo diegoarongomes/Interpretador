@@ -84,7 +84,7 @@ class Interpretador{
 						if((this.arquivo[i].contains("Enquanto"))){conta_laco++;}
 						else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco>0){conta_laco--;}
 						else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco==0){
-							j--;k=0;
+							j--;
 							break;
 						}
 					}
@@ -119,7 +119,7 @@ class Interpretador{
 					if((this.arquivo[i].contains("Enquanto"))){conta_laco++;}
 					else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco>0){conta_laco--;}
 					else if(this.arquivo[i].contains("Fim.enquanto")&&conta_laco==0){
-						j--;k=0;
+						j--;
 						break;
 					}
 				}
