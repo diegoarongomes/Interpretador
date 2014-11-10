@@ -32,7 +32,10 @@ class Interpretador{
 			if(this.arquivo[i].contains("Inicio.se")||this.arquivo[i].contains("Enquanto")){
 				
 				//Verifica o que está rodando prioritariamente: SE ou ENQUANTO.
-				if(this.arquivo[i].contains("Enquanto")&&(k==1)&&(i!=enquanto[j-1])){
+				if (this.arquivo[i].contains("Enquanto")&&(k==1)&&j==0){
+					k=0;
+				}
+				else if(this.arquivo[i].contains("Enquanto")&&(k==1)&&(i!=enquanto[j-1])){
 					k=0;
 				}
 				if (this.arquivo[i].contains("Inicio.se")){
